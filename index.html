@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ximena ❤️</title>
+
+<style>
+body{
+margin:0;
+padding:0;
+background:black;
+font-family: Arial, sans-serif;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+color:white;
+}
+
+/* Fondo estrellas */
+.stars{
+position:absolute;
+width:100%;
+height:100%;
+background:transparent;
+background-image: radial-gradient(white 1px, transparent 1px);
+background-size: 50px 50px;
+animation: moveStars 60s linear infinite;
+opacity:0.3;
+}
+
+@keyframes moveStars{
+from{background-position:0 0;}
+to{background-position:1000px 1000px;}
+}
+
+.container{
+background: rgba(255,105,180,0.15);
+padding:35px;
+border-radius:25px;
+backdrop-filter: blur(10px);
+max-width:420px;
+box-shadow:0 0 30px rgba(255,105,180,0.5);
+position:relative;
+z-index:2;
+}
+
+h1{
+font-size:32px;
+animation: latido 1s infinite;
+}
+
+@keyframes latido{
+0%{transform:scale(1);}
+50%{transform:scale(1.15);}
+100%{transform:scale(1);}
+}
+
+button{
+background:white;
+color:#ff4e8b;
+border:none;
+padding:10px 20px;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+margin:8px;
+transition:0.3s;
+position:relative;
+}
+
+button:hover{
+background:#ffe6f0;
+}
+
+#noBtn{
+position:absolute;
+}
+
+.foto{
+width:130px;
+border-radius:15px;
+margin-top:10px;
+box-shadow:0 0 20px rgba(255,105,180,0.7);
+}
+
+.heart{
+position:absolute;
+color:pink;
+animation: float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh) scale(0);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-10vh) scale(1.5);opacity:0;}
+}
+
+#carta{
+display:none;
+margin-top:10px;
+font-size:15px;
+}
+
+#final{
+display:none;
+font-size:22px;
+margin-top:15px;
+animation: aparecer 2s forwards;
+}
+
+@keyframes aparecer{
+from{opacity:0;}
+to{opacity:1;}
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+<h1>💖 Ximena 💖</h1>
+<p id="mensaje">Toca la pantalla primero 😌</p>
+
+<img src="nosotros.jpg" class="foto">
+
+<div id="pregunta" style="display:none;">
+<p>¿Quieres ser mi San Valentín siempre? 😏</p>
+<button onclick="acepta()">Sí 💘</button>
+<button id="noBtn">No </button>
+</div>
+
+<div id="carta">
+<p>
+Ximena… no importa la distancia,
+porque tú eres mi lugar favorito.
+Eres perfecta,
+mi sonrisa automática,
+mi pensamiento constante.
+no sales de mi mente amor 
+Y cuando te vuelva a ver,
+te abrazaré tan fuerte
+que el universo sabrá
+que lo nuestro es real 
+perdón amor perdóname por no estar a tu lado pero jamás dudes q te amo💞
+</p>
+</div>
+
+<div id="final">
+💍 Algún día, cuando miremos atrás,
+recordaremos esto como el inicio
+de algo eterno mi amor te amo tanto 🥹… ❤️
+</div>
+
+</div>
+
+<!-- Música 999 -->
+<audio id="music" loop>
+<source src="https://https://drive.google.com/file/d/1GiJkqMKkocFVN1yKLXrCW5_v32QT_1Y1/view?usp=drivesdk.mp3" type="audio/mp3">
+</audio>
+
+<script>
+let started=false;
+
+document.body.addEventListener("click", function(){
+if(!started){
+started=true;
+document.getElementById("music").play();
+navigator.vibrate(300);
+iniciar();
+}
+});
+
+function iniciar(){
+document.getElementById("mensaje").innerHTML="Feliz San Valentín mi niña hermosa 💕";
+setTimeout(()=>{
+document.getElementById("mensaje").innerHTML="Aunque hoy no estemos juntos...";
+},2000);
+setTimeout(()=>{
+document.getElementById("mensaje").innerHTML="Mi corazón siempre está contigo 🥹";
+},4000);
+setTimeout(()=>{
+document.getElementById("pregunta").style.display="block";
+},6000);
+}
+
+function acepta(){
+navigator.vibrate([200,100,200]);
+document.getElementById("carta").style.display="block";
+setTimeout(()=>{
+document.getElementById("final").style.display="block";
+lanzarCorazones();
+},3000);
+}
+
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",function(){
+const x=Math.random()*200-100;
+const y=Math.random()*200-100;
+noBtn.style.transform=`translate(${x}px,${y}px)`;
+});
+
+function lanzarCorazones(){
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="💗";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+},200);
+}
+</script>
+
+</body>
+</html>
